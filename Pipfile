@@ -1,0 +1,24 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+
+[packages]
+awscli = "*"
+canvasapi = "*"
+environs = "*"
+repo = "*"
+python-git = "*"
+gitpython = "*"
+pandas = "*"
+xlrd = "*"
+openpyxl = "*"
+pyarrow = "*"
+csci-utils = {editable = true,git = "2021sp-csci-utils-lalitanjali-ai#egg=csci_utils"}
+
+[requires]
+python_version = "3.8"
