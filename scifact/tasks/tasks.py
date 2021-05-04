@@ -26,21 +26,12 @@ class Preprocess_arxiv_data(Task):
     if not os.path.isdir(path):
         os.makedirs(path)
 
-    glob1 = 'arXivData.csv'
+    glob1 = 'preprocessed_arXivData.csv'
     glob_path= Parameter(default=glob1)
     ext ='.csv'
 
     def output(self):
         # return the CSVTarget of the data
-        #output = CSVTarget(self.s3_path, glob=self.glob_path,storage_options=dict(requester_pays=True))
-
-        # output = TargetOutput(
-        #     file_pattern=self.path + self.glob_path,
-        #     ext="",
-        #     target_class=CSVTarget,
-        #     storage_options=dict(requester_pays=True),
-        # ).__call__(self)
-
         file_output = TargetOutput(target_class=CSVTarget,
                                    file_pattern="data/dataset/{task.__class__.__name__}/",
                                    ext=self.ext).__call__(self)
@@ -50,25 +41,17 @@ class Preprocess_arxiv_data(Task):
     def run(self):
         json_data=json.load(self.input()["requirement"].open())
         df = pd.DataFrame(json_data)
-        #print(df.head())
 
-        out=arxiv_clean(df)
-        #print(out.head())
-
-        ddf = dd.from_pandas(out, npartitions=50)
+        df=arxiv_clean(df)
+        #Convert df to dask df
+        ddf = dd.from_pandas(df, npartitions=1)
         print(ddf.head())
 
         self.output().write_dask(ddf)
 
         output_path = self.path + self.glob_path
-        ddf.to_csv(output_path)
+        df.to_csv(output_path,index=False)
 
-        # with open(self.output(), "a") as f:
-        #     out.to_csv(f, header=False, index=False)
-        #
-        #
-        #
-        #
 
 
 
