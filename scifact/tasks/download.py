@@ -2,6 +2,9 @@ import os
 from luigi import ExternalTask, Parameter, Task, LocalTarget
 from luigi.contrib.s3 import S3Target, S3Client
 from environs import Env
+import csv, json
+from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
+from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
 
 env = Env()
 env.read_env()
@@ -21,6 +24,7 @@ class DownloadData(Task):
     SHARED_RELATIVE_PATH = 'dataset/'
 
     data = Parameter(default="arxivData.json") # luigi parameter
+
     path = os.path.join(LOCAL_ROOT, SHARED_RELATIVE_PATH)
 
     if not os.path.isdir(path):
@@ -42,7 +46,6 @@ class DownloadData(Task):
         client = S3Client(env("AWS_ACCESS_KEY_ID"), env("AWS_SECRET_ACCESS_KEY"))
         #This function creates the file atomically
         client.get(s3filename,self.path+self.data)
-
 
 class SavedModel(ExternalTask):
     MODEL_ROOT = 's3://advancedpythonmeenu/scifact/'

@@ -23,6 +23,7 @@ luigi = "*"
 torch = "*"
 torchvision = "*"
 boto3 = "*"
+dask = "*"
 
 [requires]
 python_version = "3.8"
