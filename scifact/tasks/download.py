@@ -5,6 +5,7 @@ from environs import Env
 import csv, json
 from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
 from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
+import scifact.cli as cli
 
 env = Env()
 env.read_env()
@@ -86,4 +87,4 @@ class DownloadModel(Task):
         client = S3Client(env("AWS_ACCESS_KEY_ID"), env("AWS_SECRET_ACCESS_KEY"))
         # This function creates the file atomically
         client.get(s3filename, self.path + self.model)
-
+        cli.unzip()
