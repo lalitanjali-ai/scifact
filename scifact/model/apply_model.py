@@ -1,15 +1,8 @@
+import re
+
 
 #First pass the zipped file and unzip the model
 
-import zipfile
-with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
-    zip_ref.extractall(directory_to_extract_to)
-
-model_roberta = torch.load("/content/datasets/rationale_roberta_large_fever/pytorch_model.bin")
-
-#load tokenizer
-tokenizer = AutoTokenizer.from_pretrained("/content/datasets/rationale_roberta_large_fever/")
-model = AutoModelForSequenceClassification.from_pretrained("/content/datasets/rationale_roberta_large_fever/").to(device).eval()
 
 #Evidence selection using cosine similarity after tokenization
 
@@ -92,8 +85,8 @@ def download_all_ref_content(all_ref,references2,data_original):
 
       #Remove \n from the str
       file_to_match=file_to_match.replace('\n',' ')
-      file_to_match = re.sub(u'\u201c','"',file_to_match) 
-      file_to_match = re.sub(u'\u201d','"',file_to_match) 
+      file_to_match = re.sub(u'\u201c','"',file_to_match)
+      file_to_match = re.sub(u'\u201d','"',file_to_match)
 
       print("file_to_match:",file_to_match)
       print("ref_number:",i)
@@ -181,7 +174,7 @@ def find_extracts_labels(doc_query, all_ref_text, top_matches_entered):
 
   for i in range(top_matches):
     print("extract:", arxiv_test.cosine_evidence[0][i][0])
-    print("cos_sim:", arxiv_test.cosine_evidence[0][i][1], "\n")
+    print("manhattan_dist:", arxiv_test.cosine_evidence[0][i][1], "\n")
 
 
 def cosine_pipeline(doc_query,references2,top_matches,data_copy):

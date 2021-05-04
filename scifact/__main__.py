@@ -6,3 +6,5 @@ if __name__ == "__main__":
     cli.main()
 
     cli.find_cs()
+
+    cli.unzip()
