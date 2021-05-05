@@ -28,6 +28,7 @@ textract = "*"
 transformers = "*"
 arxiv = "*"
 certifi = "*"
+spicy = "*"
 
 [requires]
 python_version = "3.8"

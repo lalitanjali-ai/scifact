@@ -6,6 +6,7 @@ import csv, json
 from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
 from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
 import scifact.cli as cli
+import scifact.model.download_pdf as md
 
 env = Env()
 env.read_env()
@@ -87,4 +88,7 @@ class DownloadModel(Task):
         client = S3Client(env("AWS_ACCESS_KEY_ID"), env("AWS_SECRET_ACCESS_KEY"))
         # This function creates the file atomically
         client.get(s3filename, self.path + self.model)
-        cli.unzip()
+
+        print("Model path:")
+        print(self.path+self.model)
+        md.unzip(path_to_zip_file=self.path+self.model,dir_path=self.path)

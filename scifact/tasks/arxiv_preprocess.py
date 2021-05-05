@@ -5,7 +5,6 @@ def rem_unwanted(line):
     return re.sub("\'term'|\'rel'|\'href'|\'type'|\'title'|\[|\{|\'name'|\'|\]|\,|\}",'',line).strip(' ').strip("''").strip(":")
 
 def rem_bracket(line):
-#     return re.sub("\'term'|\'rel'|\'href'|\'type'|\'title'|\[|\{|\'name'|\'|\]|\)}",'',line).strip(' ').strip("''").strip(":")
     return line.strip(')')
 
 def arxiv_clean(df):

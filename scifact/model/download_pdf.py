@@ -1,6 +1,9 @@
 import textract
 import arxiv
 import ssl
+import os
+import zipfile
+
 
 def find_download_pdf(pdf_name,data):
     """ Given a name of a pdf, downloads the pdf
@@ -17,6 +20,7 @@ def find_download_pdf(pdf_name,data):
                str of all the content found in the pdf
     """
 
+    #SSL Certificate to download pdf from link
     try:
         _create_unverified_https_context = ssl._create_unverified_context
     except AttributeError:
@@ -61,3 +65,16 @@ def extract_ref_pdf(text):
     reference_text = text[pos + len('References '):]
 
     return reference_text
+
+def unzip(path_to_zip_file,dir_path):
+    os.chdir(dir_path)
+
+    with zipfile.ZipFile(path_to_zip_file, 'r') as zip:
+        # printing all the contents of the zip file
+        zip.printdir()
+
+        # extracting all the files
+        print('Extracting all the files now...')
+        zip.extractall()
+        print('Done!')
+
