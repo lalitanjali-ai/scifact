@@ -102,14 +102,13 @@ def download_all_ref_content(all_ref, references2, data_original):
 
             else:
                 quotes = file_to_match.partition("\"")[2][:-1]
-                # print("quotes 2:",quotes)
 
             # extracting the ith reference from the references part of the pdf and mapping it in the arxiv database
             df1 = data_original[data_original['title'].str.contains(quotes)]
             reference_id = {"id": list(df1['id'])[0]}
             reference_get = next(arxiv.Search(id_list=[reference_id['id']]).get())
             paper_reference = reference_get.download_pdf()
-            link = "/content" + paper_reference[1:]
+            link = os.getcwd() + paper_reference[1:]
 
             # Downloading the pdf and extracting the content
             ref_text = textract.process(link, method='pdfminer')
@@ -180,7 +179,6 @@ def preprocess_query(doc_query):
     all_ref = list(map(int, temp))
 
     return (all_ref)
-
 
 def cosine_pipeline(doc_query, references2, top_matches, data_copy):
     # prepreocess the given claim/query

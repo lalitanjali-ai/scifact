@@ -53,26 +53,6 @@ class Preprocess_arxiv_data(Task):
         df.to_csv(output_path,index=False)
 
 
-# class Preprocess_arxiv_data(Task):
-#     requires = Requires()
-#     requirement = Requirement(Preprocess_arxiv_data)
-#
-#     def run(self):
-#
-#         arxiv_data = pd.read_csv("/Users/meenu/Desktop/Harvard/AdvancedPython/Assignments/Pset3/2021sp-scifact-lalitanjali-ai/scifact/data/dataset/preprocessed_arXivData.csv")
-#         print(arxiv_data.head)
-#
-#         # Downloading pdf with the title"Hadamard"
-#         pdf_name = "Dual Recurrent Attention Units "
-#
-#         pdf_data = find_download_pdf(pdf_name, arxiv_data)
-#         # print(data[:200])
-#
-#         references = extract_ref_pdf(pdf_data)
-#         print(references[:50])
-
-
-
 
 
 

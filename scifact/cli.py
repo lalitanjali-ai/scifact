@@ -17,7 +17,7 @@ def main(args=None):
 def find_cs(args=None):
     # download the cleaned arxiv dataset
     arxiv_data = pd.read_csv("/Users/meenu/Desktop/Harvard/AdvancedPython/Assignments/Pset3/2021sp-scifact-lalitanjali-ai/scifact/data/dataset/preprocessed_arXivData.csv")
-    print(arxiv_data.head)
+    #print(arxiv_data.head)
 
     # Downloading pdf with the title"Hadamard"
     pdf_name = "Dual Recurrent Attention Units "
@@ -26,11 +26,11 @@ def find_cs(args=None):
     # print(data[:200])
 
     references = extract_ref_pdf(pdf_data)
-    print(references[:50])
+    #print(references[:50])
 
     # Query from original pdf
     doc_query = 'Bilinear representations Fukui et al. [7] use compact bi-linear pooling to attend over the image features and com-bine it with the language representation.'
 
     top_matches = 2
     # find_extracts_labels(doc_query,all_ref_text,top_matches)
-    cosine_pipeline(doc_query, references, top_matches, pdf_data)
+    cosine_pipeline(doc_query, references, top_matches, arxiv_data)
