@@ -7,7 +7,7 @@ import dask.dataframe as dd
 import pandas as pd
 import io
 import luigi
-
+from git import Repo
 
 from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
 from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
@@ -80,10 +80,13 @@ class find_display_abstracts(Task):
 
     def run(self):
 
-        os.chdir("..")
-        arxiv_data_path = os.getcwd() + "/dataset/preprocessed_arXivData.csv"
-        model_path = os.getcwd() + "/saved_models/rationale_roberta_large_fever"
+        #os.chdir("..")
+        #Moving to the directory of scifact/data
+        working_dir=os.path.dirname(os.getcwd())
+        arxiv_data_path = working_dir + "/dataset/preprocessed_arXivData.csv"
+        model_path = working_dir + "/saved_models/rationale_roberta_large_fever"
 
+        print("Working directory:",working_dir)
         print("find_display_abstracts cwd:", os.getcwd())
         print("arxiv data path:", arxiv_data_path)
         print("model path cwd:", model_path)

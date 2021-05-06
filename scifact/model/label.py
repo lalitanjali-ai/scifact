@@ -45,10 +45,10 @@ def encode(sentences, claims,tokenizer):
 
 def Label_sentences(df):
 
-    model_label_roberta = torch.load(os.getcwd()+"/saved_models/label_roberta_large_fever_scifact/pytorch_model.bin", map_location='cpu')
-    tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/saved_models/label_roberta_large_fever_scifact")
-    config = AutoConfig.from_pretrained(os.getcwd()+"/saved_models/label_roberta_large_fever_scifact", num_labels=3)
-    model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/saved_models/label_roberta_large_fever_scifact",
+    model_label_roberta = torch.load(os.getcwd()+"/label_roberta_large_fever_scifact/pytorch_model.bin", map_location='cpu')
+    tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/label_roberta_large_fever_scifact")
+    config = AutoConfig.from_pretrained(os.getcwd()+"/label_roberta_large_fever_scifact", num_labels=3)
+    model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/label_roberta_large_fever_scifact",
                                                                config=config).eval().to(device)
 
     LABELS = ['REFUTES', 'NOT ENOUGH INFO', 'SUPPORTS']

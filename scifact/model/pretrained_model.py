@@ -16,9 +16,9 @@ class pretrained_model():
     def __init__(self):
 
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.model_roberta = torch.load(os.getcwd()+"/saved_models/rationale_roberta_large_fever/pytorch_model.bin", map_location='cpu')
-        self.tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/saved_models/rationale_roberta_large_fever/")
-        self.model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/saved_models/rationale_roberta_large_fever/").to(self.device).eval()
+        self.model_roberta = torch.load(os.getcwd()+"/rationale_roberta_large_fever/pytorch_model.bin", map_location='cpu')
+        self.tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/rationale_roberta_large_fever/")
+        self.model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/rationale_roberta_large_fever/").to(self.device).eval()
 
     def printwd(self):
         print("working directory pre_trained model:",os.getcwd())
