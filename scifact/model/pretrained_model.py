@@ -10,21 +10,15 @@ from scifact.model.label import Label_sentences,encode
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-print("current working directory model:", os.getcwd())
+print("current working directory model:",os.getcwd())
 
 class pretrained_model():
     def __init__(self):
-    #def __init__(self, device, model_roberta, tokenizer, model):
-
-        # self.device=device
-        # self.model_roberta=model_roberta
-        # self.tokenizer=tokenizer
-        # self.model=model
 
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.model_roberta = torch.load("./data/saved_models/rationale_roberta_large_fever/pytorch_model.bin", map_location='cpu')
-        self.tokenizer = AutoTokenizer.from_pretrained("./data/saved_models/rationale_roberta_large_fever/")
-        self.model = AutoModelForSequenceClassification.from_pretrained("./data/saved_models/rationale_roberta_large_fever/").to(self.device).eval()
+        self.model_roberta = torch.load(os.getcwd()+"/saved_models/rationale_roberta_large_fever/pytorch_model.bin", map_location='cpu')
+        self.tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/saved_models/rationale_roberta_large_fever/")
+        self.model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/saved_models/rationale_roberta_large_fever/").to(self.device).eval()
 
     def printwd(self):
         print("working directory pre_trained model:",os.getcwd())

@@ -42,7 +42,6 @@ def find_download_pdf(pdf_name,data):
     #Convert text type from bytes to string
     ref_text=ref_text.decode("utf-8")
 
-    #text = text.replace('.','')
     ref_text = ref_text.replace('\x0c','')
 
     return ref_text
