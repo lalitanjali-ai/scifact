@@ -1,17 +1,27 @@
 import os
 from luigi import ExternalTask, Parameter, Task, LocalTarget
-from tasks.download import DownloadData, DownloadModel
+from scifact.tasks.download import DownloadData, DownloadModel
 from environs import Env
 import json
 import dask.dataframe as dd
 import pandas as pd
 import io
-
+import luigi
 
 from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
 from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
 
-from tasks.arxiv_preprocess import arxiv_clean
+from scifact.tasks.arxiv_preprocess import arxiv_clean
+
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
+import os
+from luigi import ExternalTask, Parameter, Task, LocalTarget
+import pandas as pd
+from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
+from scifact.model.download_pdf import find_download_pdf, extract_ref_pdf
+from scifact.model.pretrained_model import pretrained_model
 
 env = Env()
 env.read_env()
@@ -27,8 +37,8 @@ class Preprocess_arxiv_data(Task):
         os.makedirs(path)
 
     glob1 = 'preprocessed_arXivData.csv'
-    glob_path= Parameter(default=glob1)
-    ext ='.csv'
+    glob_path = Parameter(default=glob1)
+    ext = '.csv'
 
     def output(self):
         # return the CSVTarget of the data
@@ -39,21 +49,57 @@ class Preprocess_arxiv_data(Task):
         return file_output
 
     def run(self):
-        json_data=json.load(self.input()["requirement"].open())
+        json_data = json.load(self.input()["requirement"].open())
         df = pd.DataFrame(json_data)
 
-        df=arxiv_clean(df)
-        #Convert df to dask df
+        df = arxiv_clean(df)
+        # Convert df to dask df
         ddf = dd.from_pandas(df, npartitions=1)
         print(ddf.head())
 
         self.output().write_dask(ddf)
-
         output_path = self.path + self.glob_path
-        df.to_csv(output_path,index=False)
 
+        df.to_csv(output_path, index=False)
 
+class find_display_abstracts(Task):
 
+    model_rationale='rationale_roberta_large_fever.zip'
+    model_label='label_roberta_large_fever_scifact.zip'
 
+    # arxiv_data = pd.read_csv(
+    #     "/Users/meenu/Desktop/Harvard/AdvancedPython/Assignments/Pset3/2021sp-scifact-lalitanjali-ai/scifact/data/dataset/preprocessed_arXivData.csv")
+    pdf_name = Parameter(
+        default="Dual Recurrent Attention Units ")  # Downloading pdf with the title
+    doc_query = Parameter(
+        default='Bilinear representations Fukui et al. [7] use compact bi-linear pooling to attend over the image features and com-bine it with the language representation.')
+    top_matches = luigi.IntParameter(
+        default=5)
 
+    def requires(self):
+        return DownloadModel(self.model_rationale),DownloadModel(self.model_label),Preprocess_arxiv_data()
 
+    def run(self):
+        arxiv_data_path = os.getcwd() + "/data/dataset/preprocessed_arXivData.csv"
+
+        print("arxiv data path:",arxiv_data_path)
+        print("find_display_abstracts cwd:",os.getcwd())
+        model_path=os.getcwd()+"/data/saved_models/rationale_roberta_large_fever"
+        print("model path cwd:",model_path)
+
+        if os.path.isdir(model_path) and os.path.isdir(arxiv_data_path):
+
+            arxiv_data = pd.read_csv(arxiv_data_path)
+            pdf_data = find_download_pdf(self.pdf_name, arxiv_data)
+            references = extract_ref_pdf(pdf_data)
+
+            # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+            # model_roberta = torch.load("./data/saved_models/rationale_roberta_large_fever/pytorch_model.bin", map_location='cpu')
+            # tokenizer = AutoTokenizer.from_pretrained("./data/saved_models/rationale_roberta_large_fever/")
+            # model = AutoModelForSequenceClassification.from_pretrained("./data/saved_models/rationale_roberta_large_fever/").to(device).eval()
+            #
+            # pm = pretrained_model(device,model_roberta,tokenizer,model)
+            #
+            pm = pretrained_model()
+            pm.printwd()
+            pm.cosine_pipeline(self.doc_query, references, self.top_matches,arxiv_data)

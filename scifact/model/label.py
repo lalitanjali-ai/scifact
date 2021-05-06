@@ -4,22 +4,14 @@ import os
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 # Load pretrained model
-os.chdir("/Users/meenu/Desktop/Harvard/AdvancedPython/Assignments/Pset3/2021sp-scifact-lalitanjali-ai/scifact/data/saved_models")
+print("current working directory label:", os.getcwd())
+#os.chdir("data/saved_models")
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f'Using device "{device}"')
 
-model_label_roberta = torch.load("label_roberta_large_fever_scifact/pytorch_model.bin",map_location ='cpu')
-tokenizer = AutoTokenizer.from_pretrained("label_roberta_large_fever_scifact")
-config = AutoConfig.from_pretrained("label_roberta_large_fever_scifact", num_labels=3)
-model = AutoModelForSequenceClassification.from_pretrained("label_roberta_large_fever_scifact",
-                                                           config=config).eval().to(device)
-
-LABELS = ['REFUTES', 'NOT ENOUGH INFO', 'SUPPORTS']
-
-
 # Function to encode all sentences in a pdf and the claim into a dict which will later be used for training
-def encode(sentences, claims):
+def encode(sentences, claims,tokenizer):
     text = {
         "claim_and_rationale": list(zip(sentences, claims)),
         "only_claim": claims,
@@ -53,6 +45,16 @@ def encode(sentences, claims):
 # Labeling cosine_similarity sentences
 
 def Label_sentences(df):
+
+    os.chdir("data/saved_models")
+    model_label_roberta = torch.load("label_roberta_large_fever_scifact/pytorch_model.bin", map_location='cpu')
+    tokenizer = AutoTokenizer.from_pretrained("label_roberta_large_fever_scifact")
+    config = AutoConfig.from_pretrained("label_roberta_large_fever_scifact", num_labels=3)
+    model = AutoModelForSequenceClassification.from_pretrained("label_roberta_large_fever_scifact",
+                                                               config=config).eval().to(device)
+
+    LABELS = ['REFUTES', 'NOT ENOUGH INFO', 'SUPPORTS']
+
     results = []
     with torch.no_grad():
         for i in range(len(df)):
@@ -64,7 +66,7 @@ def Label_sentences(df):
             for i in range(len(selection)):
                 evidence += str(selection[i][0])
 
-            encoded_dict = encode([evidence], [claim])
+            encoded_dict = encode([evidence], [claim],tokenizer)
             label_scores = torch.softmax(model(**encoded_dict)[0], dim=1)[0]
             label_index = label_scores.argmax().item()
             label_confidence = label_scores[label_index].item()

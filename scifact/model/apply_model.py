@@ -14,11 +14,11 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f'Using device "{device}"')
 
-print("current working directory:", os.getcwd())
-os.chdir("/Users/meenu/Desktop/Harvard/AdvancedPython/Assignments/Pset3/2021sp-scifact-lalitanjali-ai/scifact/data/saved_models")
-#Load pretrained model
+print("current working directory model:", os.getcwd())
+#os.chdir("/Users/meenu/Desktop/Harvard/AdvancedPython/Assignments/Pset3/2021sp-scifact-lalitanjali-ai/scifact/data/saved_models")
+
+
 model_roberta = torch.load("rationale_roberta_large_fever/pytorch_model.bin",map_location ='cpu')
-#load tokenizer
 tokenizer = AutoTokenizer.from_pretrained("rationale_roberta_large_fever/")
 model = AutoModelForSequenceClassification.from_pretrained("rationale_roberta_large_fever/").to(device).eval()
 
@@ -57,10 +57,7 @@ def Cosine_Evidence_Selection(top_matches, df):
 
 
 def Cosine_Evidence_Selection_predict(df):
-    #number_top_matches = top_matches
-    cosine_evidence = []
 
-    results = []
     with torch.no_grad():
         for i in range(len(df)):
             data = df.sentences[i]
@@ -181,6 +178,7 @@ def preprocess_query(doc_query):
     return (all_ref)
 
 def cosine_pipeline(doc_query, references2, top_matches, data_copy):
+
     # prepreocess the given claim/query
     all_ref = preprocess_query(str(doc_query))
 
@@ -196,3 +194,5 @@ def cosine_pipeline(doc_query, references2, top_matches, data_copy):
         all_ref_text.extend(text)
 
     find_extracts_labels(doc_query, all_ref_text, top_matches)
+
+
