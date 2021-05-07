@@ -11,6 +11,21 @@ print(f'Using device "{device}"')
 
 # Function to encode all sentences in a pdf and the claim into a dict which will later be used for training
 def encode(sentences, claims,tokenizer):
+    """ Encode sentences and claim using the labeling model tokenizer
+               Parameters
+               ----------
+               sentences: str
+                    sentences selected by the pretrained rationale selection model that are most relevant to the claim
+
+               sentences: str
+                    claim/query entered by the user
+
+               Returns
+               -------
+               encoded_dict:
+                   dict with tokenized claim and sentences that are most relavant to the claim
+    """
+
     text = {
         "claim_and_rationale": list(zip(sentences, claims)),
         "only_claim": claims,
@@ -41,9 +56,19 @@ def encode(sentences, claims,tokenizer):
     return encoded_dict
 
 
-# Labeling cosine_similarity sentences
-
 def Label_sentences(df):
+    """ Encode sentences and claim using the labeling model tokenizer
+               Parameters
+               ----------
+
+               df: pandas df
+                    df containing claim and sentences selected by the rationale model
+
+               Returns
+               -------
+               labels: list
+                   label predicted for each sentence selected by the rationale model
+    """
 
     model_label_roberta = torch.load(os.getcwd()+"/label_roberta_large_fever_scifact/pytorch_model.bin", map_location='cpu')
     tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/label_roberta_large_fever_scifact")

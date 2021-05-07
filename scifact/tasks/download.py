@@ -2,10 +2,6 @@ import os
 from luigi import ExternalTask, Parameter, Task, LocalTarget
 from luigi.contrib.s3 import S3Target, S3Client
 from environs import Env
-import csv, json
-from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
-from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
-import scifact.cli as cli
 import scifact.model.download_pdf as md
 
 env = Env()
