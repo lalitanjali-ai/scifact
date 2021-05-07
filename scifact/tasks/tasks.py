@@ -80,7 +80,6 @@ class find_display_abstracts(Task):
 
     def run(self):
 
-        #os.chdir("..")
         #Moving to the directory of scifact/data
         working_dir=os.path.dirname(os.getcwd())
         arxiv_data_path = working_dir + "/dataset/preprocessed_arXivData.csv"
