@@ -29,6 +29,8 @@ transformers = "*"
 arxiv = "*"
 certifi = "*"
 spicy = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.8"

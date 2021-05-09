@@ -12,7 +12,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 print("current working directory model:",os.getcwd())
 
-class pretrained_model():
+class rationale_label_selection():
     def __init__(self):
 
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -20,7 +20,7 @@ class pretrained_model():
         self.tokenizer = AutoTokenizer.from_pretrained(os.getcwd()+"/rationale_roberta_large_fever/")
         self.model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/rationale_roberta_large_fever/").to(self.device).eval()
 
-    def cosine_pipeline(self, doc_query, references2, top_matches, data_copy):
+    def abstract_selection(self, doc_query, references2, top_matches, data_copy):
         """ Given a claim/query, text of all its citations, number of matches required and the arxiv dataset,
             prints the abstracts
                    Parameters

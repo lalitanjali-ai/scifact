@@ -1,31 +1,20 @@
-import os
-from luigi import ExternalTask, Parameter, Task, LocalTarget
 from scifact.tasks.download import DownloadData, DownloadModel
 from environs import Env
 import json
 import dask.dataframe as dd
-import pandas as pd
-import io
 import luigi
-from git import Repo
-
-from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
-from csci_utils.luigi.dask_target import CSVTarget, ParquetTarget
-
+from csci_utils.luigi.dask_target import CSVTarget
 from scifact.tasks.arxiv_preprocess import arxiv_clean
-
-import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-
 import os
-from luigi import ExternalTask, Parameter, Task, LocalTarget
+from luigi import Parameter, Task
 import pandas as pd
 from csci_utils.luigi.luigi_task import TargetOutput, Requirement, Requires
 from scifact.model.download_pdf import find_download_pdf, extract_ref_pdf
-from scifact.model.pretrained_model import pretrained_model
+from scifact.model.pretrained_model import rationale_label_selection
 
 env = Env()
 env.read_env()
+
 
 class Preprocess_arxiv_data(Task):
     requires = Requires()
@@ -63,10 +52,10 @@ class Preprocess_arxiv_data(Task):
 
         df.to_csv(output_path, index=False)
 
-class find_display_abstracts(Task):
 
-    model_rationale='rationale_roberta_large_fever.zip'
-    model_label='label_roberta_large_fever_scifact.zip'
+class find_display_abstracts(Task):
+    model_rationale = 'rationale_roberta_large_fever.zip'
+    model_label = 'label_roberta_large_fever_scifact.zip'
 
     pdf_name = Parameter(
         default="Dual Recurrent Attention Units ")  # Downloading pdf with the title
@@ -76,27 +65,18 @@ class find_display_abstracts(Task):
         default=5)
 
     def requires(self):
-        return DownloadModel(self.model_rationale),DownloadModel(self.model_label),Preprocess_arxiv_data()
+        return DownloadModel(self.model_rationale), DownloadModel(self.model_label), Preprocess_arxiv_data()
 
     def run(self):
-
-        #Moving to the directory of scifact/data
-        working_dir=os.path.dirname(os.getcwd())
+        working_dir = os.path.dirname(os.getcwd())
         arxiv_data_path = working_dir + "/dataset/preprocessed_arXivData.csv"
         model_path = working_dir + "/saved_models/rationale_roberta_large_fever"
-
-        print("Working directory:",working_dir)
-        print("find_display_abstracts cwd:", os.getcwd())
-        print("arxiv data path:", arxiv_data_path)
-        print("model path cwd:", model_path)
 
         if os.path.isdir(model_path) and os.path.isfile(arxiv_data_path):
             arxiv_data = pd.read_csv(arxiv_data_path)
             pdf_data = find_download_pdf(self.pdf_name, arxiv_data)
             references = extract_ref_pdf(pdf_data)
 
-            print("INSIDE IF LOOP")
-
-            pm = pretrained_model()
+            pm = rationale_label_selection()
             pm.printwd()
-            pm.cosine_pipeline(self.doc_query, references, self.top_matches,arxiv_data)
+            pm.abstract_selection(self.doc_query, references, self.top_matches, arxiv_data)
