@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>ADVANCED PYTHON CONCEPTS &mdash; Scientific Fact Verification  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="scifact" href="../modules.html" />
+    <link rel="prev" title="WORKFLOW" href="../workflow/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Scientific Fact Verification
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">INTRODUCTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index.html">WORKFLOW</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ADVANCED PYTHON CONCEPTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">scifact</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Scientific Fact Verification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>ADVANCED PYTHON CONCEPTS</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/Advanced Python Concepts/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-python-concepts">
+<h1>ADVANCED PYTHON CONCEPTS<a class="headerlink" href="#advanced-python-concepts" title="Permalink to this headline">¶</a></h1>
+<img alt="../_images/pythonarc.png" src="../_images/pythonarc.png" />
+<p>Fig 3</p>
+<p>Several advanced python concepts have been used to build the workflow.</p>
+<p>Programming Pattern and Pipeline Orchestration:
+Cookiecutter to easily spin up the project.
+Luigi is a package that helps you build complex pipelines of batch jobs. Luigi has been used to handle dependency resolution to ensure that one task runs after the other is completed, workflow management and command line integration.</p>
+<p>Data Storage and Manipulation:
+Amazon S3 has been used to store and retrieve data and the pretrained models. The models and data are downloaded by a luigi task.
+Once the data is downloaded as a part of the luigi pipeline, it is partitioned and preprocessed using Dask. The data is originally a json file and not all columns are required.
+In addition to S3 and dask, classes and OOP concepts have been used to implement the different functions such as preprocessing using dask and tokenizing text for the model.</p>
+<p>Unit-testing and Continuous Integration:
+It is essential that the project have substantial unit test coverage. Mocking and decorators have been used during testing to ensure that the functionality works as expected.
+Travis has been used as a continuous integration system to build and test the project that is hosted on GitHub. Travis automatically detects when a commit has been made and pushed to a GitHub repo and each time this happens, it will try to build the project and run tests.</p>
+<p><strong>DASK IN DETAIL</strong></p>
+<img alt="../_images/dask.png" src="../_images/dask.png" />
+<p>The size of the original data that was used to train the rationale_selection and label_prediction models was over 1TB.
+The two models have been originally trained on google cloud for better computational prowess, but due to the mere size of the dataset, the system was running into RAM out of memory error.
+This is when dask came to the rescue. The dataset was partitioned into 10000 parts and each part was only computed as required right before training the model.
+In the code displayed in Fig 4, you can see that a loop over all partitions and each partition is computed after the previous partition has been trained.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../modules.html" class="btn btn-neutral float-right" title="scifact" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../workflow/index.html" class="btn btn-neutral float-left" title="WORKFLOW" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Lalitanjali Bondili.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

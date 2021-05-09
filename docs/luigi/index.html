@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>LUIGI PIPELINE &mdash; Scientific Fact Verification  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="scifact" href="../modules.html" />
+    <link rel="prev" title="ADVANCED PYTHON CONCEPTS" href="../Advanced%20Python%20Concepts/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Scientific Fact Verification
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">INTRODUCTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflow/index.html">WORKFLOW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Advanced%20Python%20Concepts/index.html">ADVANCED PYTHON CONCEPTS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">LUIGI PIPELINE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">scifact</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Scientific Fact Verification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>LUIGI PIPELINE</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/luigi/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="luigi-pipeline">
+<h1>LUIGI PIPELINE<a class="headerlink" href="#luigi-pipeline" title="Permalink to this headline">¶</a></h1>
+<p><strong>UNDERSTANDING THE TASKS WORKFLOW</strong></p>
+<p>The entire workflow has been split into 5 tasks. The first three tasks are used to download the data and models while the fifth task runs these models over the user input and displays an output. The tasks are explained in detail below.</p>
+<blockquote>
+<div><p>Task 1: Download data from S3</p>
+<p>Task 2: Download Rational Selection model from S3</p>
+<p>Task 3: Download Label Prediction model from S3</p>
+<p>Task 4: Preprocessing of the Arxiv dataset</p>
+<p>Task 5:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Receive User Input: claim, the name of pdf the claim exists in and the number of top matches required</p></li>
+<li><p>Parse the user input and extract citations from the user input of the claim using regular expressions.</p></li>
+<li><p>Find cited documents within the claim and map it to a link within the arxiv dataset. Download these documents from the <a class="reference external" href="https://arxiv.org/">https://arxiv.org/</a> website</p></li>
+<li><p>Preprocess downloaded documents</p></li>
+<li><p>Run models on downloaded documents and receive an output</p></li>
+<li><p>Display output to the user</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p><strong>RUNNING THE PROGRAM</strong></p>
+<img alt="../_images/run_program.png" src="../_images/run_program.png" />
+<p>Fig 6</p>
+<p>To run the entire program, the user is only required to input the claim , the pdf name of the document that contains the claim and top matches. These inputs are collected using the argument parser.
+The entire luigi pipeline is called using the luigi.build(Find_Display_Abstracts) task call.</p>
+<p><strong>LUIGI OUTPUT</strong></p>
+<img alt="../_images/luigu_build.png" src="../_images/luigu_build.png" />
+<p>Fig 7</p>
+<p>Notice how the user has only executed a single luigi task which is luigi.build(Find_Display_Abstracts). This is the final task in the luigi tasks workflow.
+This final task requires that the first four tasks be completed which correspond to the download of data, models and preprocessing of the data.
+The final task ensures that all other tasks have run successfully, the data and models are downloaded and will then run the models over the provided input. This task has been explained in more detail below.</p>
+<p><strong>LUIGI TASK IN DETAIL: FIND_DISPLAY_ABSTRACTS</strong></p>
+<img alt="../_images/find_disp_abs.png" src="../_images/find_disp_abs.png" />
+<p>Fig 8</p>
+<p>find_display_abstracts is the luigi task invoked by the program to run the entire workflow and display the output to the user.
+The input to this task are the  claim , the pdf name of the document that contains the claim and top matches.</p>
+<p>The task checks that the rational selection and label prediction models are downloaded successfully. It also checks that the arxiv dataset is downloaded and preprocessed.
+Only if these steps are complete, the task will run the models over the user claim within it’s run method.
+The rationale_label_selection class is utilized to implement the models over the claim entered by the user. This class contains functions that perform preprocessing tasks on the data and apply the models over the claim.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../modules.html" class="btn btn-neutral float-right" title="scifact" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Advanced%20Python%20Concepts/index.html" class="btn btn-neutral float-left" title="ADVANCED PYTHON CONCEPTS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Lalitanjali Bondili.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

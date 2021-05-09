@@ -7,8 +7,16 @@ Welcome to Scientific Fact Verification's documentation!
 ========================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
+
+   introduction/index.rst
+   workflow/index.rst
+   Advanced Python Concepts/index.rst
+   luigi/index.rst
+   results/index.rst
+
+
 
    modules
 
