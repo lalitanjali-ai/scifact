@@ -29,6 +29,7 @@ There are 2 models that will be required for this project:
 ### Workflow
 
 ![](.README_images/213585e8.png)
+Fig 2
 
 Step 1: Download the model and dataset. 
 The two models are Rationale Selection and Label Prediction. We also download a dataset called the Arxiv dataset.
