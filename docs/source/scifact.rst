@@ -1,6 +1,15 @@
 scifact package
 ===============
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   scifact.model
+   scifact.tasks
+
 Submodules
 ----------
 
