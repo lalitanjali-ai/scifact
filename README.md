@@ -1,3 +1,5 @@
+The project documentation can be found at: https://lalitanjali-ai.github.io/scifact/
+
 ## **INTRODUCTION**
 
 The recent increase in misinformation has stimulated research in fact checking, which is the task of assessing the truthfulness of a sentence or a claim.
