@@ -10,6 +10,7 @@ Welcome to Scientific Fact Verification's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   introduction/index.rst
    modules
 
 Indices and tables
