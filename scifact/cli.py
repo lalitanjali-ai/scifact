@@ -16,7 +16,8 @@ parser.add_argument("-t", "--top_matches", default=top_matches)
 
 def main(args=None):
     args = parser.parse_args(args=args)
-    luigi.build([find_display_abstracts(pdf_name=args.pdf_name,doc_query=args.doc_query,top_matches=args.top_matches)],local_scheduler=True)
+    luigi.build([find_display_abstracts(pdf_name=args.pdf_name,doc_query=args.doc_query,top_matches=args.top_matches)],
+                local_scheduler=True)
 
 
 
