@@ -1,4 +1,4 @@
-The project documentation can be found at: https://lalitanjali-ai.github.io/scifact/
+The project documentation can be found at: https://lalitanjali-ai.github.io/scifact/index.html
 
 ## **INTRODUCTION**
 
