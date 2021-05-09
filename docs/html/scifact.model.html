@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>scifact.model package &mdash; Scientific Fact Verification  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="scifact.tasks package" href="scifact.tasks.html" />
+    <link rel="prev" title="scifact package" href="scifact.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Scientific Fact Verification
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">scifact</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="scifact.html">scifact package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="scifact.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">scifact.model package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="scifact.tasks.html">scifact.tasks package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="scifact.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scifact.html#module-scifact.cli">scifact.cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scifact.html#module-scifact">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Scientific Fact Verification</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">scifact</a> &raquo;</li>
+        
+          <li><a href="scifact.html">scifact package</a> &raquo;</li>
+        
+      <li>scifact.model package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/scifact.model.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scifact-model-package">
+<h1>scifact.model package<a class="headerlink" href="#scifact-model-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-scifact.model.download_pdf">
+<span id="scifact-model-download-pdf-module"></span><h2>scifact.model.download_pdf module<a class="headerlink" href="#module-scifact.model.download_pdf" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifact.model.download_pdf.extract_ref_pdf">
+<span class="sig-prename descclassname"><span class="pre">scifact.model.download_pdf.</span></span><span class="sig-name descname"><span class="pre">extract_ref_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.download_pdf.extract_ref_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract portion of the pdf that appears in the References section
+:param text: contents of the pdf in str form
+:type text: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>str of all the References found in the pdf</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifact.model.download_pdf.find_download_pdf">
+<span class="sig-prename descclassname"><span class="pre">scifact.model.download_pdf.</span></span><span class="sig-name descname"><span class="pre">find_download_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.download_pdf.find_download_pdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a name of a pdf, downloads the pdf
+:param pdf_name: name of the pdf to download which contains to claim
+:type pdf_name: str
+:param data: arxiv dataset which contains the details of all pdfs and their authors, links etc
+:type data: pandas dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>str of all the content found in the pdf</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifact.model.download_pdf.unzip">
+<span class="sig-prename descclassname"><span class="pre">scifact.model.download_pdf.</span></span><span class="sig-name descname"><span class="pre">unzip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_zip_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.download_pdf.unzip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-scifact.model.label">
+<span id="scifact-model-label-module"></span><h2>scifact.model.label module<a class="headerlink" href="#module-scifact.model.label" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="scifact.model.label.Label_sentences">
+<span class="sig-prename descclassname"><span class="pre">scifact.model.label.</span></span><span class="sig-name descname"><span class="pre">Label_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.label.Label_sentences" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode sentences and claim using the labeling model tokenizer
+:param df: df containing claim and sentences selected by the rationale model
+:type df: pandas df</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>labels</strong> – label predicted for each sentence selected by the rationale model</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="scifact.model.label.encode">
+<span class="sig-prename descclassname"><span class="pre">scifact.model.label.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">claims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.label.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encode sentences and claim using the labeling model tokenizer
+:param sentences: sentences selected by the pretrained rationale selection model that are most relevant to the claim
+:type sentences: str
+:param sentences: claim/query entered by the user
+:type sentences: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with tokenized claim and sentences that are most relavant to the claim</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>encoded_dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-scifact.model.pretrained_model">
+<span id="scifact-model-pretrained-model-module"></span><h2>scifact.model.pretrained_model module<a class="headerlink" href="#module-scifact.model.pretrained_model" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">scifact.model.pretrained_model.</span></span><span class="sig-name descname"><span class="pre">rationale_label_selection</span></span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.Cosine_Evidence_Selection">
+<span class="sig-name descname"><span class="pre">Cosine_Evidence_Selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_matches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.Cosine_Evidence_Selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given number of top matches and df containing the claim and sentences, find the most relevant sentences
+:param top_matches: int</p>
+<blockquote>
+<div><p>Number of top sentences to find</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> – pd dataframe
+Dataframe containing claim/query and all cited document sentences</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of predicted sentences</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.abstract_selection">
+<span class="sig-name descname"><span class="pre">abstract_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">references2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_matches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_copy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.abstract_selection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a claim/query, text of all its citations, number of matches required and the arxiv dataset,
+prints the abstracts</p>
+<blockquote>
+<div><dl class="simple">
+<dt>doc_query: str</dt><dd><p>user entered claim/query</p>
+</dd>
+<dt>references2: str</dt><dd><p>text of all the citations combined together</p>
+</dd>
+<dt>top_matches: str</dt><dd><p>number of matching abstracts to extract</p>
+</dd>
+<dt>data_copy: pandas dataframe</dt><dd><p>arxiv dataset which contains the details of all pdfs and their authors, links etc</p>
+</dd>
+</dl>
+<p>Call to function : find_extracts_labels</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.download_all_ref_content">
+<span class="sig-name descname"><span class="pre">download_all_ref_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">references2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_original</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.download_all_ref_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of citations, download cited documents from the internet and combine them
+Example: If the provided citation list is [3,6,9],
+the function will search the references part of the primary pdf,
+locate the titles of the pdf corresponding to the 3rd, 6th and 9th citations,
+download them, preprocess them and combine them into a single str</p>
+<blockquote>
+<div><blockquote>
+<div><dl class="simple">
+<dt>all_ref:list</dt><dd><p>list of all the citation numbers</p>
+</dd>
+<dt>references2:str</dt><dd><p>str of the References section of the primary pdf</p>
+</dd>
+<dt>data_original:pd dataframe</dt><dd><p>arxiv_dataset</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="simple">
+<dt>ref_str:str</dt><dd><p>str of all the sentences from the different cited documents combined</p>
+</dd>
+<dt>ref_text_list: list</dt><dd><p>list of all the sentences from the different cited documents combined</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.find_extracts_labels">
+<span class="sig-name descname"><span class="pre">find_extracts_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">all_ref_text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_matches_entered</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.find_extracts_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a claim/query, text from cited documents and top matches, print the relevant sentences
+:param doc_query: user entered claim/query
+:type doc_query: str
+:param ref_text_list: list of all the sentences from the different cited documents combined
+:type ref_text_list: list
+:param top_matches_entered: number of relevant sentences to return
+:type top_matches_entered: int</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.preprocess_query">
+<span class="sig-name descname"><span class="pre">preprocess_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.preprocess_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a claim/query, function finds the citation within the sentence.
+Example: If claim/query is “Covid spread through air[3,6,9] and transmits fast”</p>
+<blockquote>
+<div><dl>
+<dt>The function is able to find the citation numbers: [3,6,9] and return this as a list</dt><dd><dl class="simple">
+<dt>doc_query: str</dt><dd><p>user entered claim/query</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>all_ref: list</dt><dd><p>list of all the citation numbers</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.printwd">
+<span class="sig-name descname"><span class="pre">printwd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.printwd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-scifact.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-scifact.model" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="scifact.tasks.html" class="btn btn-neutral float-right" title="scifact.tasks package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scifact.html" class="btn btn-neutral float-left" title="scifact package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Lalitanjali Bondili.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
