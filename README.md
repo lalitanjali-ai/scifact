@@ -23,7 +23,10 @@ STEP 2: Run Luigi Pipeline
 pipenv run python -m scifact
 
 If required, you can download the Dataset and Models using the following links:
+
 arxiv dataset: https://advancedpythonmeenu.s3.us-east-2.amazonaws.com/scifact/arxivData.json
+
 label_predicion_model: https://advancedpythonmeenu.s3.us-east-2.amazonaws.com/scifact/label_roberta_large_fever_scifact.zip
+
 rationale_selection_model: https://advancedpythonmeenu.s3.us-east-2.amazonaws.com/scifact/rationale_roberta_large_fever.zip
 
