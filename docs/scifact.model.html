@@ -89,6 +89,11 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction/index.html">INTRODUCTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="workflow/index.html">WORKFLOW</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Advanced%20Python%20Concepts/index.html">ADVANCED PYTHON CONCEPTS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="luigi/index.html">LUIGI PIPELINE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results/index.html">RESULTS</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">scifact</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="scifact.html">scifact package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="scifact.html#subpackages">Subpackages</a><ul class="current">
@@ -184,15 +189,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifact.model.download_pdf.extract_ref_pdf">
 <span class="sig-prename descclassname"><span class="pre">scifact.model.download_pdf.</span></span><span class="sig-name descname"><span class="pre">extract_ref_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.download_pdf.extract_ref_pdf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extract portion of the pdf that appears in the References section
-:param text: contents of the pdf in str form
-:type text: str</p>
+<dd><p>Extract portion of the pdf that appears in the References section</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>str of all the References found in the pdf</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – contents of the pdf in str form</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>text of all the References found in the pdf</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -200,17 +206,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifact.model.download_pdf.find_download_pdf">
 <span class="sig-prename descclassname"><span class="pre">scifact.model.download_pdf.</span></span><span class="sig-name descname"><span class="pre">find_download_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pdf_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.download_pdf.find_download_pdf" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a name of a pdf, downloads the pdf
-:param pdf_name: name of the pdf to download which contains to claim
-:type pdf_name: str
-:param data: arxiv dataset which contains the details of all pdfs and their authors, links etc
-:type data: pandas dataframe</p>
+<dd><p>Given a name of a pdf, downloads the pdf</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>str of all the content found in the pdf</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pdf_name</strong> (<em>str</em>) – name of the pdf to download which contains to claim</p></li>
+<li><p><strong>data</strong> (<em>pandas dataframe</em>) – arxiv dataset which contains the details of all pdfs and their authors, links etc</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>str</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all the content/text found in the pdf</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -218,7 +226,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifact.model.download_pdf.unzip">
 <span class="sig-prename descclassname"><span class="pre">scifact.model.download_pdf.</span></span><span class="sig-name descname"><span class="pre">unzip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_zip_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.download_pdf.unzip" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Unzip a folder</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_zip_file</strong> (<em>str</em>) – path to the zipped folder</p></li>
+<li><p><strong>dir_path</strong> (<em>str</em>) – path to place unzipped files</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </div>
 <div class="section" id="module-scifact.model.label">
@@ -226,15 +243,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifact.model.label.Label_sentences">
 <span class="sig-prename descclassname"><span class="pre">scifact.model.label.</span></span><span class="sig-name descname"><span class="pre">Label_sentences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.label.Label_sentences" title="Permalink to this definition">¶</a></dt>
-<dd><p>Encode sentences and claim using the labeling model tokenizer
-:param df: df containing claim and sentences selected by the rationale model
-:type df: pandas df</p>
+<dd><p>Use the label_model and label the selected abstracts as Supports/Rejects</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>labels</strong> – label predicted for each sentence selected by the rationale model</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pandas df</em>) – df containing claim and sentences selected by the rationale model</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>list</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>labels predicted for each sentence selected by the rationale model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
 </dd></dl>
@@ -242,17 +260,19 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="scifact.model.label.encode">
 <span class="sig-prename descclassname"><span class="pre">scifact.model.label.</span></span><span class="sig-name descname"><span class="pre">encode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">claims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokenizer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.label.encode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Encode sentences and claim using the labeling model tokenizer
-:param sentences: sentences selected by the pretrained rationale selection model that are most relevant to the claim
-:type sentences: str
-:param sentences: claim/query entered by the user
-:type sentences: str</p>
+<dd><p>Encode sentences and claim using the labeling model tokenizer</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>dict with tokenized claim and sentences that are most relavant to the claim</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sentences</strong> (<em>str</em>) – sentences selected by the pretrained rationale selection model that are most relevant to the claim</p></li>
+<li><p><strong>claim</strong> (<em>str</em>) – claim/query entered by the user</p></li>
+</ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>encoded_dict</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with tokenized claim and sentences that are most relavant to the claim</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>encoded_dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -286,49 +306,56 @@ Dataframe containing claim/query and all cited document sentences</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.abstract_selection">
 <span class="sig-name descname"><span class="pre">abstract_selection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_query</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">references2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_matches</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_copy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.abstract_selection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a claim/query, text of all its citations, number of matches required and the arxiv dataset,
-prints the abstracts</p>
-<blockquote>
-<div><dl class="simple">
-<dt>doc_query: str</dt><dd><p>user entered claim/query</p>
-</dd>
-<dt>references2: str</dt><dd><p>text of all the citations combined together</p>
-</dd>
-<dt>top_matches: str</dt><dd><p>number of matching abstracts to extract</p>
-</dd>
-<dt>data_copy: pandas dataframe</dt><dd><p>arxiv dataset which contains the details of all pdfs and their authors, links etc</p>
+<dd><dl class="simple">
+<dt>Given a claim/query, text of all its citations, number of matches required and the arxiv dataset,</dt><dd><p>prints the abstracts</p>
 </dd>
 </dl>
-<p>Call to function : find_extracts_labels</p>
-</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc_query</strong> (<em>str</em>) – user entered claim/query</p></li>
+<li><p><strong>references2</strong> (<em>str</em>) – text of all the citations combined together</p></li>
+<li><p><strong>top_matches</strong> (<em>int</em>) – number of matching abstracts to extract</p></li>
+<li><p><strong>data_copy</strong> (<em>pandas dataframe</em>) – arxiv dataset which contains the details of all pdfs and their authors, links etc</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>call to function find_extracts_labels</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.download_all_ref_content">
 <span class="sig-name descname"><span class="pre">download_all_ref_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_ref</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">references2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_original</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.download_all_ref_content" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a list of citations, download cited documents from the internet and combine them
-Example: If the provided citation list is [3,6,9],
+<dd><dl class="simple">
+<dt>Given a list of citations, download cited documents from the internet and combine them.</dt><dd><p>Example: If the provided citation list is [3,6,9],
 the function will search the references part of the primary pdf,
 locate the titles of the pdf corresponding to the 3rd, 6th and 9th citations,
 download them, preprocess them and combine them into a single str</p>
-<blockquote>
-<div><blockquote>
-<div><dl class="simple">
-<dt>all_ref:list</dt><dd><p>list of all the citation numbers</p>
-</dd>
-<dt>references2:str</dt><dd><p>str of the References section of the primary pdf</p>
-</dd>
-<dt>data_original:pd dataframe</dt><dd><p>arxiv_dataset</p>
 </dd>
 </dl>
-</div></blockquote>
-<dl class="simple">
-<dt>ref_str:str</dt><dd><p>str of all the sentences from the different cited documents combined</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_ref</strong> (<em>list</em>) – list of all the citation numbers</p></li>
+<li><p><strong>references2</strong> (<em>str</em>) – References section of the primary pdf</p></li>
+<li><p><strong>data_original</strong> (<em>pandas dataframe</em>) – arxiv dataset which contains the details of all pdfs and their authors, links etc</p></li>
+</ul>
 </dd>
-<dt>ref_text_list: list</dt><dd><p>list of all the sentences from the different cited documents combined</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ref_str which is a str of all the sentences from the different cited documents combined</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ref_list which is a list of all the sentences from the different cited documents combined</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
@@ -347,20 +374,23 @@ download them, preprocess them and combine them into a single str</p>
 <dt class="sig sig-object py" id="scifact.model.pretrained_model.rationale_label_selection.preprocess_query">
 <span class="sig-name descname"><span class="pre">preprocess_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_query</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#scifact.model.pretrained_model.rationale_label_selection.preprocess_query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a claim/query, function finds the citation within the sentence.
-Example: If claim/query is “Covid spread through air[3,6,9] and transmits fast”</p>
-<blockquote>
-<div><dl>
-<dt>The function is able to find the citation numbers: [3,6,9] and return this as a list</dt><dd><dl class="simple">
-<dt>doc_query: str</dt><dd><p>user entered claim/query</p>
+Example: If claim/query is “Covid spread through air[3,6,9] and transmits fast”;
+The function is able to find the citation numbers: [3,6,9] and return this as a list</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>doc_query</strong> (<em>str</em>) – user entered claim/query</p></li>
+<li><p><strong>top_matches</strong> (<em>int</em>) – number of matching abstracts to extract</p></li>
+<li><p><strong>data_copy</strong> (<em>pandas dataframe</em>) – arxiv dataset which contains the details of all pdfs and their authors, links etc</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>all_ref which is a list of all the citation numbers</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
 </dd>
 </dl>
-<dl class="simple">
-<dt>all_ref: list</dt><dd><p>list of all the citation numbers</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</div></blockquote>
 </dd></dl>
 
 <dl class="py method">
