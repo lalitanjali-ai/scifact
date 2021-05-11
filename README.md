@@ -9,7 +9,7 @@ Due to rapid growth in the scientific literature, it is difficult for researcher
 
 ## ***LINKS***
 
-**The project documentation can be found at**:
+**The project documentation can be found at**: https://lalitanjali-ai.github.io/scifact/
 
 **PPT Presentation**: https://drive.google.com/file/d/1LEctjJUwYvr0pfQY_3W6kHB_0dPH10s0/view?usp=sharing
 
