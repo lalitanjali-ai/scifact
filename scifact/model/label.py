@@ -11,19 +11,16 @@ print(f'Using device "{device}"')
 
 # Function to encode all sentences in a pdf and the claim into a dict which will later be used for training
 def encode(sentences, claims,tokenizer):
-    """ Encode sentences and claim using the labeling model tokenizer
-               Parameters
-               ----------
-               sentences: str
-                    sentences selected by the pretrained rationale selection model that are most relevant to the claim
+    """Encode sentences and claim using the labeling model tokenizer
 
-               sentences: str
-                    claim/query entered by the user
+    :param sentences: sentences selected by the pretrained rationale selection model that are most relevant to the claim
+    :type sentences:  str
 
-               Returns
-               -------
-               encoded_dict:
-                   dict with tokenized claim and sentences that are most relavant to the claim
+    :param claim: claim/query entered by the user
+    :type claim:  str
+
+    :return: dict with tokenized claim and sentences that are most relavant to the claim
+    :rtype: encoded_dict
     """
 
     text = {
@@ -57,17 +54,13 @@ def encode(sentences, claims,tokenizer):
 
 
 def Label_sentences(df):
-    """ Encode sentences and claim using the labeling model tokenizer
-               Parameters
-               ----------
+    """Use the label_model and label the selected abstracts as Supports/Rejects
 
-               df: pandas df
-                    df containing claim and sentences selected by the rationale model
+    :param df: df containing claim and sentences selected by the rationale model
+    :type df:  pandas df
 
-               Returns
-               -------
-               labels: list
-                   label predicted for each sentence selected by the rationale model
+    :return: labels predicted for each sentence selected by the rationale model
+    :rtype: list
     """
 
     model_label_roberta = torch.load(os.getcwd()+"/label_roberta_large_fever_scifact/pytorch_model.bin", map_location='cpu')

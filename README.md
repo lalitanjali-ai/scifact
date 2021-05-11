@@ -1,6 +1,4 @@
 
-[![Build Status](https://travis-ci.com/lalitanjali-ai/scifact.svg?token=ZCUpeueQ5ZJ9dAyfaHNv&branch=master)](https://travis-ci.com/lalitanjali-ai/scifact)
-
 ## ***INTRODUCTION***
 
 The recent increase in misinformation has stimulated research in fact checking, which is the task of assessing the truthfulness of a sentence or a claim.

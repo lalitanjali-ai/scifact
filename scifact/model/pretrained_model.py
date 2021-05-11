@@ -21,23 +21,24 @@ class rationale_label_selection():
         self.model = AutoModelForSequenceClassification.from_pretrained(os.getcwd()+"/rationale_roberta_large_fever/").to(self.device).eval()
 
     def abstract_selection(self, doc_query, references2, top_matches, data_copy):
-        """ Given a claim/query, text of all its citations, number of matches required and the arxiv dataset,
+        """Given a claim/query, text of all its citations, number of matches required and the arxiv dataset,
             prints the abstracts
-                   Parameters
-                   ----------
-                   doc_query: str
-                       user entered claim/query
-                   references2: str
-                       text of all the citations combined together
-                   top_matches: str
-                       number of matching abstracts to extract
-                   data_copy: pandas dataframe
-                       arxiv dataset which contains the details of all pdfs and their authors, links etc
 
-                   Returns
-                   -------
-                   Call to function : find_extracts_labels
-            """
+        :param doc_query: user entered claim/query
+        :type doc_query:  str
+
+        :param references2: text of all the citations combined together
+        :type references2:  str
+
+        :param top_matches: number of matching abstracts to extract
+        :type top_matches:  int
+
+        :param data_copy: arxiv dataset which contains the details of all pdfs and their authors, links etc
+        :type data_copy:  pandas dataframe
+
+        :return: call to function find_extracts_labels
+        """
+
         # preprocess the given claim/query
         all_ref = self.preprocess_query(str(doc_query))
 
@@ -55,19 +56,23 @@ class rationale_label_selection():
         self.find_extracts_labels(doc_query, all_ref_text, top_matches)
 
     def preprocess_query(self,doc_query):
-        """ Given a claim/query, function finds the citation within the sentence.
-            Example: If claim/query is "Covid spread through air[3,6,9] and transmits fast"
-                     The function is able to find the citation numbers: [3,6,9] and return this as a list
-                           Parameters
-                           ----------
-                           doc_query: str
-                                user entered claim/query
+        """Given a claim/query, function finds the citation within the sentence.
+        Example: If claim/query is "Covid spread through air[3,6,9] and transmits fast";
+        The function is able to find the citation numbers: [3,6,9] and return this as a list
 
-                           Returns
-                           -------
-                           all_ref: list
-                                list of all the citation numbers
-                    """
+        :param doc_query: user entered claim/query
+        :type doc_query:  str
+
+        :param top_matches: number of matching abstracts to extract
+        :type top_matches:  int
+
+        :param data_copy: arxiv dataset which contains the details of all pdfs and their authors, links etc
+        :type data_copy:  pandas dataframe
+
+        :return: all_ref which is a list of all the citation numbers
+        :rtype: list
+        """
+
         # Extracting only the citations from the query
         match = re.search(r'\[.*?\]', doc_query)
 
@@ -82,32 +87,28 @@ class rationale_label_selection():
         return (all_ref)
 
     def download_all_ref_content(self, all_ref, references2, data_original):
-        """ Given a list of citations, download cited documents from the internet and combine them
+        """Given a list of citations, download cited documents from the internet and combine them.
                     Example: If the provided citation list is [3,6,9],
                     the function will search the references part of the primary pdf,
                     locate the titles of the pdf corresponding to the 3rd, 6th and 9th citations,
                     download them, preprocess them and combine them into a single str
 
-                           Parameters
-                           ----------
-                            all_ref:list
-                                list of all the citation numbers
+        :param all_ref: list of all the citation numbers
+        :type all_ref:  list
 
-                            references2:str
-                                str of the References section of the primary pdf
+        :param references2: References section of the primary pdf
+        :type references2:  str
 
-                            data_original:pd dataframe
-                                arxiv_dataset
+        :param data_original: arxiv dataset which contains the details of all pdfs and their authors, links etc
+        :type data_original:  pandas dataframe
 
-                           Returns
-                           -------
-                           ref_str:str
-                                 str of all the sentences from the different cited documents combined
+        :return: ref_str which is a str of all the sentences from the different cited documents combined
+        :rtype: str
+        :return: ref_list which is a list of all the sentences from the different cited documents combined
+        :rtype: list
 
-                           ref_text_list: list
-                                list of all the sentences from the different cited documents combined
+        """
 
-                    """
         ref_str = ''
         ref_text_list = pd.DataFrame(columns=['Ref_no', 'Text'])
         for i in (all_ref):

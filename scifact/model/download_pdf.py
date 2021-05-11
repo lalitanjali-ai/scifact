@@ -6,18 +6,15 @@ import zipfile
 
 
 def find_download_pdf(pdf_name,data):
-    """ Given a name of a pdf, downloads the pdf
-           Parameters
-           ----------
-           pdf_name: str
-               name of the pdf to download which contains to claim
-           data: pandas dataframe
-               arxiv dataset which contains the details of all pdfs and their authors, links etc
+    """Given a name of a pdf, downloads the pdf
 
-           Returns
-           -------
-           str
-               str of all the content found in the pdf
+    :param pdf_name: name of the pdf to download which contains to claim
+    :type pdf_name:  str
+    :param data: arxiv dataset which contains the details of all pdfs and their authors, links etc
+    :type data:  pandas dataframe
+
+    :return: all the content/text found in the pdf
+    :rtype: str
     """
 
     #SSL Certificate to download pdf from link
@@ -47,17 +44,14 @@ def find_download_pdf(pdf_name,data):
     return ref_text
 
 def extract_ref_pdf(text):
-    """ Extract portion of the pdf that appears in the References section
-               Parameters
-               ----------
-               text: str
-                    contents of the pdf in str form
+    """Extract portion of the pdf that appears in the References section
 
-               Returns
-               -------
-               str
-                   str of all the References found in the pdf
-        """
+    :param text: contents of the pdf in str form
+    :type text:  str
+
+    :return: text of all the References found in the pdf
+    :rtype: str
+    """
     # Extract only the references section from the entire pdf
     # get only text after word 'References'
     pos = text.find('References')
@@ -66,6 +60,14 @@ def extract_ref_pdf(text):
     return reference_text
 
 def unzip(path_to_zip_file,dir_path):
+    """Unzip a folder
+
+    :param path_to_zip_file: path to the zipped folder
+    :type path_to_zip_file:  str
+    :param dir_path: path to place unzipped files
+    :type dir_path:  str
+
+    """
     os.chdir(dir_path)
 
     with zipfile.ZipFile(path_to_zip_file, 'r') as zip:

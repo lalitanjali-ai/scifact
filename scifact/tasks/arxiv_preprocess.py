@@ -8,6 +8,14 @@ def rem_bracket(line):
     return line.strip(')')
 
 def arxiv_clean(df):
+    """Clean the arxiv dataset to be used for searching of pdf links
+
+    :param df: arxiv dataset which contains the details of all pdfs and their authors, links etc
+    :type df:  pandas dataframe
+
+    :return: cleaned arxiv dataset
+    :rtype: pandas dataframe
+    """
 
     #Creating a dataframe with author names and preprocessing it
     df2 = pd.DataFrame(df.author.str.split('}').tolist(), index=df.index).stack() #Cleaning author names
