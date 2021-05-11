@@ -3,4 +3,11 @@ omit =
     */tests.py
     */test_*.py
     */*_tests.py
+    */__init__.py
+    /data/*
+    /docs/*
+    /docsrc/*
+    /scifact/*
+
+
 
