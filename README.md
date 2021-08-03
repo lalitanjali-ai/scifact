@@ -17,10 +17,10 @@ Due to rapid growth in the scientific literature, it is difficult for researcher
 
 ## ***RUN IT YOURSELF***
 
-**STEP 1**: Download required packages from the pipfile
+**STEP 1**: Download required packages from the pipfile:
 pipenv install
 
-**STEP 2**: Run Luigi Pipeline
+**STEP 2**: Run Luigi Pipeline:
 pipenv run python -m scifact
 
 If required, you can download the Dataset and Models using the following links:
